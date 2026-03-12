@@ -139,7 +139,7 @@ Web interface using Flask
 
 Author
 
-Bharathi V
+Bharathiraja V
 
 Python & AWS Cloud Learner
 Focused on cloud automation and DevOps practices.
