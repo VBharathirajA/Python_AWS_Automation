@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Install Requirements') {
+        stage('Install boto3') {
             steps {
                 bat 'pip install boto3'
             }
