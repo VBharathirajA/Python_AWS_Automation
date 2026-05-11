@@ -12,13 +12,26 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                echo 'Code cloned successfully'
+                echo "Cloned successfully"
+            }
+        }
+
+        stage('Verify Python') {
+            steps {
+                bat 'python --version'
+                bat 'pip --version'
             }
         }
 
         stage('Install dependencies') {
             steps {
                 bat 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Verify AWS credentials') {
+            steps {
+                bat 'python -c "import boto3; c=boto3.client(\'sts\'); print(\'Account:\', c.get_caller_identity()[\'Account\'])"'
             }
         }
 
@@ -31,7 +44,8 @@ pipeline {
     }
 
     post {
-        success { echo 'Build passed!' }
-        failure { echo 'Build failed — check logs above' }
+        success { echo 'Build PASSED!' }
+        failure { echo 'Build FAILED — check logs above' }
+        always  { cleanWs() }
     }
 }
