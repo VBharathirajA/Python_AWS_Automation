@@ -295,4 +295,6 @@ def UI():
             print("Invalid input")
 UI()             
 
+if __name__ == "__main__":
+    main()
 
