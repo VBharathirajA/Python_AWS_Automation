@@ -2,53 +2,29 @@ pipeline {
     agent any
 
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('boto3
-
-')
-        AWS_SECRET_ACCESS_KEY = credentials('0xF3AZ6%
-')
+        AWS_ACCESS_KEY_ID     = credentials('aws-access-key')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
         AWS_DEFAULT_REGION    = 'ap-south-1'
     }
 
     stages {
 
-        stage('Checkout') {
+        stage('Clone Repo') {
             steps {
-                checkout scm
-                echo "Cloned successfully"
+                git 'https://github.com/VBharathirajA/Python_AWS_Automation.git'
             }
         }
 
-        stage('Verify Python') {
+        stage('Install Requirements') {
             steps {
-                bat 'python --version'
-                bat 'pip --version'
+                bat 'pip install boto3'
             }
         }
 
-        stage('Install dependencies') {
+        stage('Run Python Script') {
             steps {
-                bat 'pip install -r requirements.txt'
+                bat 'python ec2_create.py'
             }
         }
-
-        stage('Verify AWS credentials') {
-            steps {
-                bat 'python -c "import boto3; c=boto3.client(\'sts\'); print(\'Account:\', c.get_caller_identity()[\'Account\'])"'
-            }
-        }
-
-        stage('Run script') {
-            steps {
-                bat 'python main.py'
-            }
-        }
-
-    }
-
-    post {
-        success { echo 'Build PASSED!' }
-        failure { echo 'Build FAILED — check logs above' }
-        always  { cleanWs() }
     }
 }
