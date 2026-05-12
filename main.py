@@ -9,7 +9,7 @@ regions = session.get_available_regions('s3')
 
 
 while True:
-    loc = os.environ.get("AWS_DEFAULT_REGION", "ap-south-1")
+    loc = input("Enter region name:")
 
     if loc in regions:
         print("Valid region")
