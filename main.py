@@ -10,7 +10,7 @@ regions = session.get_available_regions('s3')
 
 
 while True:
-    loc = int(sys.arvg[1])
+    loc = int(sys.argv[1])
 
     if loc in regions:
         print("Valid region")
@@ -254,7 +254,7 @@ def UI():
                 print("9. Main menu")
                 print("10. Exit")
 
-                choice = int(sys.arvg[2])
+                choice = int(sys.argv[2])
 
                 if choice == 1:
                     obj.create()
