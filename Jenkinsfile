@@ -34,7 +34,8 @@ pipeline {
 
         stage('Run Python Script') {
             steps {
-                bat "\"python\" \"main.py\" %Location%" "%Choice%"
+               bat "\"python\" \"main.py\" %Location% %Choice%"
+
             }
         }
     }
