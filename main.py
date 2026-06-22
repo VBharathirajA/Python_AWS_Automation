@@ -254,7 +254,7 @@ def UI():
                 print("9. Main menu")
                 print("10. Exit")
 
-                choice = int(input("Enter Choice: "))
+                choice = int(sys.arvg[2])
 
                 if choice == 1:
                     obj.create()
