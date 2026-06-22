@@ -6,6 +6,12 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
         AWS_DEFAULT_REGION    = 'ap-south-1'
     }
+    parameteres{
+        string(
+            name:"Location",
+            description: "Enter Location:"
+        )
+    }
 
     stages {
 
@@ -24,7 +30,7 @@ pipeline {
 
         stage('Run Python Script') {
             steps {
-                bat 'python main.py'
+                bat 'python main.py' %Location%
             }
         }
     }
