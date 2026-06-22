@@ -10,7 +10,7 @@ regions = session.get_available_regions('s3')
 
 
 while True:
-    loc = int(sys.argv[1])
+    loc = sys.argv[1]
 
     if loc in regions:
         print("Valid region")
