@@ -11,7 +11,8 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/VBharathirajA/Python_AWS_Automation.git'
+                git branch: "main" ,
+                url:"https://github.com/VBharathirajA/Python_AWS_Automation.git"
             }
         }
 
@@ -23,7 +24,7 @@ pipeline {
 
         stage('Run Python Script') {
             steps {
-                bat 'python ec2_create.py'
+                bat 'python main.py'
             }
         }
     }
