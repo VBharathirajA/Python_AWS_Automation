@@ -1,4 +1,5 @@
 import boto3
+import sys
 from botocore.exceptions import ClientError,NoCredentialsError
 import os
 
@@ -9,7 +10,7 @@ regions = session.get_available_regions('s3')
 
 
 while True:
-    loc = input("Enter region name:")
+    loc = int(sys.arvg[1])
 
     if loc in regions:
         print("Valid region")
