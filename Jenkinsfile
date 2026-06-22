@@ -11,6 +11,10 @@ pipeline {
             name:"Location",
             description: "Enter Location:"
         )
+        string(
+            name:"Choice",
+            description:"Enter Choice:"
+        )
     }
 
     stages {
@@ -30,7 +34,7 @@ pipeline {
 
         stage('Run Python Script') {
             steps {
-                bat "\"python\" \"main.py\" %Location%"
+                bat "\"python\" \"main.py\" %Location%" "%Choice%"
             }
         }
     }
